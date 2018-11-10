@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 564cf85e035e1d9419776d4ce687da55
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - artTerrain: {fileID: 2800000, guid: 449cb55bb04616e4a981de35233a85e8, type: 3}
+  - artBone: {fileID: 2800000, guid: bca1259341a773044bed3ead26b17f69, type: 3}
+  - source: {fileID: 2800000, guid: ace2725f2efb2324fba9399388e42e28, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
