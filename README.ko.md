@@ -1,6 +1,8 @@
 # Art Animation
 
-종이에 그림을 따라 그릴 수 있도록 단계별 밑그림을 카메라 화면 속 종이 위에 겹쳐 보여 주고, 다 그린 그림을 찍어 바람에 흔들리는 애니메이션으로 바꿔 주는 안드로이드 AR 앱이다. Vuforia 로 종이에 인쇄한 이미지 타깃을 인식하고, 찍은 그림은 Anima2D 로 뼈대를 심은 스프라이트 메시에 입혀 움직인다. 학교 팀 과제로 만들었다.
+[English](README.md)
+
+종이에 그림을 따라 그릴 때 쓰는 안드로이드 AR 앱이다. 카메라 화면 속 종이 위에 단계별 밑그림을 겹쳐 보여 주고 다 그린 그림은 찍어서 바람에 흔들리는 애니메이션으로 바꿔 준다. Vuforia 로 종이에 인쇄한 이미지 타깃을 인식하고, 찍은 그림은 Anima2D 로 뼈대를 심은 스프라이트 메시에 입혀 움직인다. 학교 팀 과제로 만들었다.
 
 <img src="docs/screenshots/screenshot-1.jpg" width="480" alt="종이 위에 밑그림을 겹쳐 보여 주는 화면">
 
@@ -9,9 +11,9 @@
 
 Unity 2018.1.9f2 에서 `source/` 를 열고 `Assets/01. Scenes/SampleScene.unity` 를 안드로이드로 빌드한다. 열기 전에 다음을 준비한다.
 
-1. Unity 를 설치할 때 Android Build Support 와 Vuforia Augmented Reality Support 구성요소를 같이 고른다. 프로젝트를 연 뒤 메뉴 GameObject > Vuforia > AR Camera 를 한 번 추가하면 Unity 가 Vuforia 에셋을 `Assets/Vuforia/` 로 가져온다. 이때 새로 생긴 AR Camera 는 지운다. 원본은 Vuforia 7.2.24 를 썼다.
+1. Unity 를 설치할 때 Android Build Support 와 Vuforia Augmented Reality Support 구성요소를 같이 고른다. 프로젝트를 연 뒤 메뉴 GameObject > Vuforia > AR Camera 를 한 번 추가하면 Unity 가 Vuforia 에셋을 `Assets/Vuforia/` 로 가져오는데 이때 새로 생긴 AR Camera 는 지운다. 원본은 Vuforia 7.2.24 를 썼다.
 2. `Assets/Resources/VuforiaConfiguration.asset` 의 App License Key 에 developer.vuforia.com 에서 발급받은 자신의 키를 넣는다.
-3. 아래 에셋을 받아 표의 경로에 넣는다. Anima2D 는 그림의 스프라이트 메시와 뼈대, IK 가 모두 Anima2D 컴포넌트라서 가져와야 씬의 애니메이션이 동작한다. Unity Asset Store 에서 무료로 배포되던 패키지로, 지금은 판매가 끝나 예전에 받은 계정의 My Assets 에서 받을 수 있다. 녹화 플러그인은 `MenuCtrl` 과 `UIController` 가 `AndroidUtils` 클래스를 부르므로 넣어야 스크립트가 컴파일된다. 다른 사람이 만든 에셋 중 공개 레포에 재배포할 수 있는지 정해지지 않은 것은 넣지 않았다.
+3. 아래 에셋을 받아 표의 경로에 넣는다. Anima2D 는 그림의 스프라이트 메시와 뼈대, IK 가 모두 Anima2D 컴포넌트라서 가져와야 씬의 애니메이션이 동작한다. Unity Asset Store 에서 무료로 배포되던 패키지로, 지금은 판매가 끝나 예전에 받은 계정의 My Assets 에서 받을 수 있다. 녹화 플러그인을 넣어야 스크립트가 컴파일되는데 `MenuCtrl` 과 `UIController` 가 `AndroidUtils` 클래스를 부르기 때문이다. 다른 사람이 만든 에셋 중 공개 레포에 재배포할 수 있는지 정해지지 않은 것은 넣지 않았다.
 
 | 에셋 | 제작자 | 넣을 경로 | 원본에서 쓰인 곳 |
 |---|---|---|---|
@@ -38,7 +40,7 @@ Unity 2018.1.9f2 에서 `source/` 를 열고 `Assets/01. Scenes/SampleScene.unit
 
 ## 구현 원리
 
-**찍은 그림을 미리 만든 뼈대 메시에 색만 옮긴다.** 그림마다 움직일 부분(야자수, 사이프러스)의 모양대로 잘라 둔 567x627 텍스처 `ArtBone` 과 배경용 `ArtTerrain` 이 있고, `ArtBone` 은 Anima2D 로 뼈대와 IK 를 심은 스프라이트 메시다. Animation 버튼을 누르면 `TextureLoader.Copy` 가 찍은 그림의 RGB 만 두 텍스처에 덮어써서 알파는 그대로 남는다. 그래서 움직일 부분의 모양은 유지된 채 사용자가 칠한 색이 입혀진다.
+**찍은 그림을 미리 만든 뼈대 메시에 색만 옮긴다.** 그림마다 움직일 부분(야자수, 사이프러스)의 모양대로 잘라 둔 567x627 텍스처 `ArtBone` 과 배경용 `ArtTerrain` 이 있고 `ArtBone` 은 Anima2D 로 뼈대와 IK 를 심은 스프라이트 메시다. Animation 버튼을 누르면 `TextureLoader.Copy` 가 찍은 그림의 RGB 만 두 텍스처에 덮어쓴다. 알파는 그대로 남으므로 움직일 부분의 모양은 유지된 채 사용자가 칠한 색이 입혀진다.
 
 ```csharp
 destColors[destIndex].r = sourceColors[sourceIndex].r;
@@ -55,7 +57,7 @@ if (maskColors[maskIndex].a != 0)
     targetColors[targetIndex] = ClearColor;
 ```
 
-**흔들림은 사인 곡선의 변화량으로 만든다.** `WindCtrl` 은 야자수 잎 뼈대 8개를 돌리고, `WindCtrl2` 는 사이프러스의 IK 목표 5개를 옮기면서 돌린다. 매 프레임 더하는 양은 `Mathf.Sin(time + Time.deltaTime) - Mathf.Sin(time)` 에 속도를 곱한 값이다. 사인 값 자체가 아닌 변화량을 더하므로 처음 놓인 자세를 중심으로 흔들린다.
+**흔들림은 사인 곡선의 변화량으로 만든다.** `WindCtrl` 은 야자수 잎 뼈대 8개를 돌리고 `WindCtrl2` 는 사이프러스의 IK 목표 5개를 옮기면서 돌린다. 매 프레임 더하는 양은 `Mathf.Sin(time + Time.deltaTime) - Mathf.Sin(time)` 에 속도를 곱한 값이다. 사인 값 자체가 아닌 변화량을 더하므로 처음 놓인 자세를 중심으로 흔들린다.
 
 녹화와 갤러리 열기는 `MenuCtrl` 이 위 표의 안드로이드 화면 녹화 플러그인을 불러 처리한다.
 
